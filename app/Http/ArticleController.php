@@ -20,9 +20,17 @@ class ArticleController extends Controller
     public function change(Request $request)
     {
         $client = new Client();
-        $crawler = $client->request('GET', $request->input('wechat_url'));
-        $content = $crawler->filter('html')->html();
+        $wechat_url = $request->get('wechat_url');
+        $crawler = $client->request('GET', $wechat_url);
+        $content = $crawler->getBody()->getContents();
         $content = str_replace('data-src="','src=/image?url=',$content);
         echo $content;
+    }
+
+    public function image(Request $request){
+        $url = $request->get('url');
+        header("content-type:image/jpeg");
+        echo file_get_contents($url);
+        die();
     }
 }

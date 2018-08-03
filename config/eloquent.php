@@ -11,7 +11,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 // 载入数据库配置文件
 
-require_once APPPATH.'config/database.php';
+require_once APP_PATH.'config/database.php';
 
 // Eloquent ORM
 

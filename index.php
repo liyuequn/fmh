@@ -1,7 +1,7 @@
 <?php
-define('APPPATH',dirname(__FILE__).'/');
+define('APP_PATH',dirname(__FILE__).'/');
 
-require APPPATH.'bootstrap/app.php';
+require APP_PATH.'bootstrap/app.php';
 
 
 

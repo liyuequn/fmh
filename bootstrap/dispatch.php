@@ -9,13 +9,13 @@
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-$routes = require APPPATH . 'route/web.php';
+$routes = require APP_PATH . 'route/web.php';
 
 $namespace = 'App\Http\\';
 
 $request = Request::createFromGlobals();
-
-$request_url = trim($request->getPathInfo(),'/');
+$request_url = $request->getPathInfo();
+if($request_url!='/')$request_url = trim($request_url,'/');
 
 $controllerName = $namespace.$routes[$request_url]['controller'];
 

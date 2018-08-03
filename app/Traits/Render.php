@@ -6,7 +6,7 @@
  * Time: 下午8:21
  */
 
-namespace APP\Traits;
+namespace App\Traits;
 
 Trait Render
 {
@@ -14,12 +14,12 @@ Trait Render
     {
 
 
-        $templatePath = APPPATH.'app/View';
+        $templatePath = APP_PATH.'app/View';
 
         $loader = new \Twig_Loader_Filesystem($templatePath);
 
         $twig = new \Twig_Environment($loader, array(
-//            'cache' => APPPATH.'storage/viewCache',
+//            'cache' => APP_PATH.'storage/viewCache',
             'debug'=> false,
         ));
 

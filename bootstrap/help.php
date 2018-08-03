@@ -8,7 +8,7 @@
 
 function getConf($field){
 
-    $config = require APPPATH . "app/config.php";
+    $config = require APP_PATH . "app/config.php";
 
     return $config[$field];
 

@@ -8,10 +8,10 @@
 
 
 //1.基础函数
-require APPPATH . 'bootstrap/help.php';
+require APP_PATH . 'bootstrap/help.php';
 //2.Autoload 自动载入
-require APPPATH.'vendor/autoload.php';
+require APP_PATH.'vendor/autoload.php';
 //3.路由分发
-require APPPATH . 'bootstrap/dispatch.php';
+require APP_PATH . 'bootstrap/dispatch.php';
 
-require APPPATH."config/eloquent.php";
+require APP_PATH."config/eloquent.php";

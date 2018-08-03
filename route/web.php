@@ -8,9 +8,17 @@
 
 return [
 
-    'index'=>[
+    '/'=>[
         'controller'=>'ArticleController',
         'action'=>'index',
+    ],
+    'change'=>[
+        'controller'=>'ArticleController',
+        'action'=>'change',
+    ],
+    'image'=>[
+        'controller'=>'ArticleController',
+        'action'=>'image',
     ],
 
 

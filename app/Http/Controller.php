@@ -7,12 +7,12 @@
  */
 namespace App\Http;
 
-use APP\Traits\Render;
+use App\Traits;
 
-require_once APPPATH.'vendor/autoload.php';
+require_once APP_PATH.'vendor/autoload.php';
 
 class Controller
 {
-    use Render;
+    use Traits\Render;
 
 }
