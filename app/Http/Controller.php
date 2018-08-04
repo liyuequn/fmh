@@ -13,6 +13,6 @@ require_once APP_PATH.'vendor/autoload.php';
 
 class Controller
 {
-    use Traits\Render;
+    use Traits\Render,Traits\Json;
 
 }

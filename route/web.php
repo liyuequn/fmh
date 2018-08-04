@@ -7,7 +7,6 @@
  */
 
 return [
-
     '/'=>[
         'controller'=>'ArticleController',
         'action'=>'index',
@@ -20,8 +19,17 @@ return [
         'controller'=>'ArticleController',
         'action'=>'image',
     ],
-
-
-
-
+    'articles'=>[
+        'controller'=>'ArticleController',
+        'action'=>'articles',
+    ],
+    'res'=>[
+        'controller'=>'CalculateController',
+        'action'=>'getResult',
+        'type'=>['Content-Type' => 'Application/json']
+    ],
+    'calculate'=>[
+        'controller'=>'CalculateController',
+        'action'=>'index',
+    ],
 ];

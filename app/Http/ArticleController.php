@@ -7,6 +7,7 @@
  */
 namespace App\Http;
 
+use App\Models\BaseModel;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -32,5 +33,10 @@ class ArticleController extends Controller
         header("content-type:image/jpeg");
         echo file_get_contents($url);
         die();
+    }
+
+    public function articles()
+    {
+        return BaseModel::find(1);
     }
 }

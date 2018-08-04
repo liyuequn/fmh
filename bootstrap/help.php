@@ -14,9 +14,4 @@ function getConf($field){
 
 }
 
-function dd($input){
-    echo '<pre>';
-    var_dump($input);
-    exit;
-}
 
