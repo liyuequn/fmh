@@ -50,6 +50,10 @@ class ComposerStaticInitd05f235960183bab931ae939ec894d65
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'F' => 
+        array (
+            'Frame\\' => 6,
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Inflector\\' => 26,
@@ -136,6 +140,10 @@ class ComposerStaticInitd05f235960183bab931ae939ec894d65
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Frame\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/framework',
         ),
         'Doctrine\\Common\\Inflector\\' => 
         array (

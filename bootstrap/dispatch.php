@@ -8,23 +8,13 @@
 define('FMH_START_TIME',microtime());
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Frame\Dispatch;
 
-$routes = require APP_PATH . 'route/web.php';
+$request = new \Frame\Request();
+$route = $request->getRoute();
+$dispatch = new Dispatch($router);
+$result = $dispatch->dispatch($request->method,$route);
 
-$namespace = 'App\Http\\';
-
-$request = Request::createFromGlobals();
-$request_url = $request->getPathInfo();
-if($request_url!='/')$request_url = trim($request_url,'/');
-
-$controllerName = $namespace.$routes[$request_url]['controller'];
-
-$controller = new $controllerName ();
-
-$action = $routes[$request_url]['action'];
-
-$headers = isset($routes[$request_url]['type'])?$routes[$request_url]['type']:[];
-
-$response = new Response($controller->$action($request),200,$headers);
+$response = new Response($result,200);
 
 $response->send();

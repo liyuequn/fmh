@@ -5,31 +5,11 @@
  * Date: 2018/8/3
  * Time: 下午5:44
  */
+use Frame\Route\Route;
 
-return [
-    '/'=>[
-        'controller'=>'ArticleController',
-        'action'=>'index',
-    ],
-    'change'=>[
-        'controller'=>'ArticleController',
-        'action'=>'change',
-    ],
-    'image'=>[
-        'controller'=>'ArticleController',
-        'action'=>'image',
-    ],
-    'articles'=>[
-        'controller'=>'ArticleController',
-        'action'=>'articles',
-    ],
-    'res'=>[
-        'controller'=>'CalculateController',
-        'action'=>'getResult',
-        'type'=>['Content-Type' => 'Application/json']
-    ],
-    'calculate'=>[
-        'controller'=>'CalculateController',
-        'action'=>'index',
-    ],
-];
+$router = new Route();
+$router->get('/','ArticleController@index');
+$router->post('article/change','ArticleController@change');
+
+$router->get('calculate','CalculateController@index');
+$router->post('res','CalculateController@getResult');

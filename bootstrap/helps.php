@@ -14,4 +14,11 @@ function getConf($field){
 
 }
 
+function dd($param)
+{
+    echo '<pre>';
+    var_dump($param);
+    echo '</pre>';
+    die(1);
+}
 

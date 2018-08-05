@@ -15,7 +15,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $this->render('article/index');
+        return $this->render('article/index');
     }
 
     public function change(Request $request)
