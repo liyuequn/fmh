@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  nginx-php-fpm:
+    image: fmh
+    build: .
+    volumes:
+    - "/Users/liyuequn/www/fmh:/var/www/fmh"
+    restart: always
+    ports:
+    - "8082:80"
+    environment:
+      WEBROOT: '/var/www/fmh'
+
+
+
+

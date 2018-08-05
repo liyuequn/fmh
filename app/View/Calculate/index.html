@@ -1,33 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-<div class="alert alert-primary" style="text-align:center;" role="alert">
-    <a href="/">首页</a>|
-    <a href="/calculate">计算器</a>
-</div>
+{% extends "Layouts/index.html" %}
+{% block content %}
 <form>
     <div class="form-group">
-        <label for="exampleInputEmail1">输入数值</label>
-        <input name="num" id="article" class="form-control article" placeholder="输入数值">
+        <input name="num" id="article" class="form-control form-control-lg" style="text-align:center;" placeholder="输入数值">
     </div>
 </form>
 <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block">提交</button>
-
+<br>
 <div class="list">
-    <ul>
+    <ul class="list-group">
 
     </ul>
 </div>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+    function copyUrl2(i)
+    {
+        var Url2=document.getElementById("val"+i).innerText;
+        var oInput = document.createElement('input');
+        oInput.value = Url2;
+        document.body.appendChild(oInput);
+        oInput.select(); // 选择对象
+        document.execCommand("Copy"); // 执行浏览器复制命令
+        oInput.className = 'oInput';
+        oInput.style.display='none';
+        alert('复制成功');
+    }
+</script>
 <script>
     $(function () {
         $("#submit").click(function () {
@@ -46,7 +46,12 @@
                         if(res.code =='22000')
                         {
                             for(var i=0;i<res.result.length;i++){
-                                $(".list >ul").append("<li>"+res.result[i]+"</li>");
+                                $(".list >ul").append("" +
+                                    "<li class='list-group-item' id='val"+i+"'>"
+                                    +res.result[i]+"" +
+                                    "<button class='btn btn-success' style='float: right;' type='button' onClick='copyUrl2("+i+")'>点击复制</button>"+
+                                    "</li>"
+                                );
                             }
                         }
 
@@ -63,5 +68,4 @@
         })
     })
 </script>
-</body>
-</html>
+{% endblock %}
