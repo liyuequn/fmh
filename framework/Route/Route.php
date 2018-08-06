@@ -55,7 +55,7 @@ class Route
         if(array_key_exists($route,$routes)){
             return $route;
         }else{
-            throw new \Exception(" Didn't find your request !");
+            throw new \Exception(" invalid request $route");
         }
 
     }

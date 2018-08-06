@@ -15,13 +15,14 @@ class Dispatch
 {
     protected $controllerName;
     protected $actionName;
-    protected $route;
+    protected $router;
     protected $method;
     protected $requestUrl;
 
-    public function __construct(Route $route)
+    public function __construct(Route $route,Request $request)
     {
-        $this->route = $route;
+        $this->router = $route;
+        $this->request = $request;
     }
 
     public function dispatch($method,$route)
@@ -35,8 +36,8 @@ class Dispatch
 
     protected function getRoute()
     {
-        $routes = $this->route->getRoutes();
-        $this->route->checkRoute($this->method,$this->requestUrl);
+        $routes = $this->router->getRoutes();
+        $this->router->checkRoute($this->method,$this->requestUrl);
         $this->controllerName = $routes[$this->method][$this->requestUrl]['controller'];
         $this->actionName = $routes[$this->method][$this->requestUrl]['action'];
     }
@@ -48,7 +49,7 @@ class Dispatch
         $actionName = $this->actionName;
         $controller = new $controllerName();
 
-        return $controller->$actionName($request);
+        return $controller->$actionName($this->request);
     }
 
 

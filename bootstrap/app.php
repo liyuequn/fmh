@@ -16,4 +16,25 @@ require APP_PATH."config/eloquent.php";
 //4.路由
 require APP_PATH."route/web.php";
 //5.分发
-require APP_PATH . 'bootstrap/dispatch.php';
+
+
+define('FMH_START_TIME',microtime());
+
+use Symfony\Component\HttpFoundation\Response;
+use Frame\Dispatch;
+use Frame\Request;
+use Frame\HandleException;
+
+
+$exception = new HandleException();
+
+$request = Request::capture();
+
+$dispatch = new Dispatch($router,$request);
+
+$result = $dispatch->dispatch($request->getMethod(),$request->getRoute());
+
+
+$response = new Response($result,200);
+
+$response->send();

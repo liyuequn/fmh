@@ -10,6 +10,7 @@ namespace App\Http;
 use App\Models\BaseModel;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\Request;
+use Exception;
 
 class ArticleController extends Controller
 {
@@ -22,6 +23,8 @@ class ArticleController extends Controller
     {
         $client = new Client();
         $wechat_url = $request->get('wechat_url');
+        if(!$wechat_url) throw new Exception('wechat_url can not be empty');
+
         $crawler = $client->request('GET', $wechat_url);
         $content = $crawler->getBody()->getContents();
         $content = str_replace('data-src="','src=/image?url=',$content);
@@ -30,6 +33,8 @@ class ArticleController extends Controller
 
     public function image(Request $request){
         $url = $request->get('url');
+
+        if(!$url) throw new Exception('wechat_url can not be empty');
         header("content-type:image/jpeg");
         echo file_get_contents($url);
         die();

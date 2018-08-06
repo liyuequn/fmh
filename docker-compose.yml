@@ -5,10 +5,10 @@ services:
     image: fmh
     build: .
     volumes:
-    - "/Users/liyuequn/www/fmh:/var/www/fmh"
+    - "/Users/liyuequn/PhpstormProjects/fmh:/home/laravel"
     restart: always
     ports:
-    - "8082:80"
+    - "8083:80"
     environment:
       WEBROOT: '/var/www/fmh'
 
