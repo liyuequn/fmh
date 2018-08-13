@@ -24,7 +24,7 @@ class CalculateController extends Controller
         try{
             $target = $request->get('num');
             $calculate = new Calculate($target);
-            $result = $calculate->getResult();
+            $result = [$calculate->getResult()];
 
             return $this->json($result,Constant::RESPONSE_SUCCESS,'计算成功');
         }catch (\Exception $e)
