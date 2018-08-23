@@ -9,8 +9,6 @@
 namespace Frame;
 
 
-use Frame\Route\Route;
-
 class Dispatch
 {
     protected $controllerName;
@@ -19,7 +17,7 @@ class Dispatch
     protected $method;
     protected $requestUrl;
 
-    public function __construct(Route $route,Request $request)
+    public function __construct(Router $route,Request $request)
     {
         $this->router = $route;
         $this->request = $request;

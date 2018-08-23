@@ -6,15 +6,20 @@
  * Time: 下午11:24
  */
 
-namespace Frame\Route;
+namespace Frame;
 
-class Route
+class Router
 {
     protected $routes;
 
     public function __construct()
     {
 
+    }
+
+    public function init(\Closure $closure)
+    {
+        return call_user_func($closure,[]);
     }
 
     public function getRoutes()
@@ -25,27 +30,25 @@ class Route
     public function get($uri,$param)
     {
 
-        if(!strstr($param,'@'))
-            throw new \Exception('invalid route');
+        $this->addRoute('get',$uri,$param);
 
-        $params = explode('@',$param);
-        if($uri!='/')
-            $uri = trim($uri,'/');
-        $this->routes['get'][$uri]['controller'] = $params[0];
-        $this->routes['get'][$uri]['action'] = $params[1];
-        $this->routes['get'][$uri]['url'] = $uri;
 
     }
     public function post($uri,$param)
+    {
+        $this->addRoute('post',$uri,$param);
+
+    }
+
+    public function addRoute($method,$uri,$param)
     {
         if(!strstr($param,'@'))
             throw new \Exception('invalid route');
 
         $params = explode('@',$param);
-        $this->routes['post'][$uri]['controller'] = $params[0];
-        $this->routes['post'][$uri]['action'] = $params[1];
-        $this->routes['post'][$uri]['url'] = $uri;
-
+        $this->routes[$method][$uri]['controller'] = $params[0];
+        $this->routes[$method][$uri]['action'] = $params[1];
+        $this->routes[$method][$uri]['url'] = $uri;
     }
 
     public function checkRoute($method,$route)
