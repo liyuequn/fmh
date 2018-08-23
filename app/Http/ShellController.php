@@ -32,6 +32,7 @@ class ShellController extends Controller
     {
         echo '<pre>';
 
-        system("./update.sh");
+        system("git reset --hard");
+        system("git pull origin master");
     }
 }
