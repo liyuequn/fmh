@@ -6,6 +6,7 @@
  * Time: 下午5:11
  */
 
+error_reporting('E_ALL & ~E_NOTICE');
 //1.基础函数
 require APP_PATH . 'bootstrap/helps.php';
 //2.Autoload 自动载入
@@ -13,8 +14,8 @@ require APP_PATH.'vendor/autoload.php';
 
 $app = new \Frame\Application();
 
-dd($app->get('router')->init(function ($router){
+$app->get('router')->init(function ($router){
     require APP_PATH.'route/web.php';
-}));
+});
 
 
