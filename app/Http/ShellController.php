@@ -27,4 +27,11 @@ class ShellController extends Controller
         echo '<a href="/update">更新</a>';
 
     }
+
+    public function update()
+    {
+        echo '<pre>';
+
+        system("./update.sh");
+    }
 }
