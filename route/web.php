@@ -32,4 +32,13 @@ return [
         'controller'=>'CalculateController',
         'action'=>'index',
     ],
+    'update'=>[
+        'controller'=>'ShellController',
+        'action'=>'index',
+    ],
+    'exec'=>[
+        'controller'=>'ShellController',
+        'action'=>'exec',
+    ],
+
 ];
