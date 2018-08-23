@@ -47,8 +47,10 @@
                         {
                             for(var i=0;i<res.result.length;i++){
                                 $(".list >ul").append("" +
-                                    "<li class='list-group-item' id='val"+i+"'>"
-                                    +res.result[i]+"" +
+                                    "<li class='list-group-item'>" +
+                                        "<span id='val"+i+"'>"
+                                        +res.result[i]+"" +
+                                        "</span>" +
                                     "<button class='btn btn-success' style='float: right;' type='button' onClick='copyUrl2("+i+")'>点击复制</button>"+
                                     "</li>"
                                 );

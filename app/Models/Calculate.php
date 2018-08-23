@@ -15,8 +15,7 @@ class Calculate
             30,50,80,500,400,300,200,100
         ];
 
-        protected $targetArr;
-        protected $target;
+
 
         /**
          * 1.可重复利用
@@ -26,101 +25,86 @@ class Calculate
 
         public function __construct($target)
         {
+
             $this->target = $target;
-            $this->targetArr = $this->target($target);
-        }
-
-        public  function target($target = 0)
-        {
-            $target = $target?:$this->target;
-            $targetArr = [];
-            $numbers = self::PRICES;
-            foreach ($numbers as $number )
-            {
-                if($target >= $number)
-                {
-                    $targetArr[] = $number;
-                }
-            }
-            return $targetArr;
-
-        }
-
-        public function one($target)
-        {
-            if(in_array($target,$this->target()))
-                return $target;
-        }
-
-        public  function two($target)
-        {
-            $targetArr = $this->target();
-            foreach ($targetArr as $number)
-            {
-                $number2 = $target-$number;
-                if(in_array($number2,$targetArr))
-                {
-                    $this->check($number,$number2);
-                    return "$number+$number2";
-                }
-
-            }
-
-        }
-        public  function twoRest($target)
-        {
-            $targetArr = $this->target();
-            $twoArr = [];
-            foreach ($targetArr as $number)
-            {
-                $number2 = $target-$number;
-                if(!in_array($number2,$targetArr))
-                {
-                    $twoArr[$number] = $number2;
-                }
-
-            }
-            return $twoArr;
-
-        }
-
-
-        public function three($target)
-        {
-            $twoRest = $this->twoRest($target);
-            foreach ($twoRest as $key => $rest)
-            {
-                $targetArr = $this->target($rest);
-                foreach ($targetArr as $number)
-                {
-                    $number2 = $rest - $number;
-                    if(in_array($number2,$targetArr))
-                    {
-                        $this->check($key,$number,$number2);
-                        return $key.'+'.$number.'+'.$number2;
-                    }
-
-                }
-            }
-
         }
 
         public function getResult()
         {
-            $target = $this->target;
-            $adds[] = $this->one($target);
-            $adds[] = $this->two($target);
-            $adds[] = $this->three($target);
-            return $adds;
+            function get_shopping_list($arr,$sum){
+                if(in_array($sum,$arr)){
+                    return $sum;
+                }
+                rsort($arr);
+                $count = count($arr);
+                if($arr[$count-1]>$sum){
+                    return 0;
+                }
+                $ing_sum = 0;
+                $shopping_lenth=1;
+                $need_num = 1;
+                $shoping_str = '';
+                while (true){
+                    if($sum/$arr[$count-1]<$need_num){
+                        break;
+                    }
+                    foreach ($arr as $k=>$v){
+                        if($v>$sum){
+                            continue;
+                        }else{
+                            $shopping_lenth = $need_num;
+                            $shoping_str = $ing_sum = $v;
+                            $slice_arr = array_slice($arr,$k);
+                            while($shopping_lenth>0){
+                                $next_num = get_number($slice_arr,$sum-$ing_sum,$shopping_lenth);
+                                if($next_num){
+                                    $ing_sum+=$next_num;
+                                    $shopping_lenth--;
+                                    $shoping_str .= "+".$next_num;
+                                    if($ing_sum==$sum){
+                                        return $shoping_str;
+                                    }
+                                }else{
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    $need_num++;
+                }
+                return 0;
+
+            }
+
+            function get_number($arr,$sum,$shopping_lenth){
+
+                if(in_array($sum,$arr)){
+                    return $sum;
+                }
+                if($shopping_lenth=='1'){
+                    return false;
+                }
+                foreach ($arr as $k=>$v){
+                    if($v>$sum){
+                        continue;
+                    }else{
+                        return $v;
+                    }
+                }
+                return false;
+            }
+
+            $res = get_shopping_list(self::PRICES,$this->target);
+
+            return $res;
         }
 
-        public function check(...$args)
-        {
-            foreach ($args as $x) {
-                if(!in_array($x,self::PRICES))
-                {
-                    throw new \Exception(json_encode($args));
-                }
-            }
-        }
+
+
+
+
+
+
+
+
 }
