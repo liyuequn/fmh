@@ -5,6 +5,8 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/liyuequn/liyuequn:1.0
     volumes:
     - "$PWD:/var/www/fmh"
+    - "$PWD/nginx-site.conf:/etc/nginx/sites-available/default.conf"
+
     restart: always
     ports:
     - "8080:80"
