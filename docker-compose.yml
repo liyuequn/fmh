@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nginx-php-fpm:
-    image: fmh
+    image: registry.cn-hangzhou.aliyuncs.com/liyuequn/liyuequn:1.0
     volumes:
     - "$PWD:/var/www/fmh"
     restart: always
