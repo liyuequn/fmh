@@ -7,7 +7,7 @@ services:
     - "$PWD:/var/www/fmh"
     restart: always
     ports:
-    - "8080:80"
+    - "80:80"
     environment:
       WEBROOT: '/var/www/fmh'
 
